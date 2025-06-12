@@ -1,0 +1,144 @@
+/* Estilo geral para o corpo da página */
+body {
+  margin: 0; /* Remove a margem padrão do navegador */
+  font-family: Arial, sans-serif; /* Define a fonte padrão */
+  background-color: #fdf5e6; /* Define uma cor de fundo clara */
+}
+
+/* Container principal que divide a tela em três colunas */
+.container {
+  display: flex; /* Organiza os elementos filhos em linha (lado a lado) */
+  height: 100vh; /* Altura total da janela do navegador */
+  width: 100vw; /* Largura total da janela do navegador */
+}
+
+/* Coluna lateral esquerda: seção de categorias */
+.categorias {
+  width: 20%; /* Ocupa 20% da largura da tela */
+  background-color: #ffe680; /* Cor de fundo amarela */
+  padding: 20px; /* Espaçamento interno */
+  display: flex; /* Organiza os botões em coluna */
+  flex-direction: column;
+  justify-content: start; /* Alinha os botões ao topo */
+  gap: 20px; /* Espaço entre os botões */
+  align-items: center; /* Centraliza os botões horizontalmente */
+}
+
+/* Botões da seção de categorias */
+.categorias button {
+  padding: 15px;
+  font-size: 18px;
+  border: none; /* Remove borda padrão */
+  background-color: #ff9500; /* Cor laranja */
+  color: white;
+  border-radius: 10px; /* Borda arredondada */
+  cursor: pointer; /* Mostra o ponteiro ao passar o mouse */
+}
+
+/* Área do meio: produtos */
+.produtos {
+  width: 50%; /* Ocupa metade da tela */
+  background-color: #fff3e0; /* Cor de fundo clara */
+  padding: 20px;
+  display: grid; /* Layout em grade */
+  grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
+  gap: 15px; /* Espaço entre os produtos */
+  overflow-y: auto; /* Rolagem vertical caso tenha muitos produtos */
+}
+
+/* Estilo de cada card de produto */
+.produto {
+  background-color: #ffe0b2; /* Cor de fundo */
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1); /* Sombra leve */
+}
+
+/* Imagem do produto */
+.produto img {
+  width: 100%; /* Imagem ocupa toda a largura do card */
+  border-radius: 10px;
+}
+
+/* Área de controle de quantidade */
+.quantidade {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px; /* Espaço entre os botões e número */
+  margin-top: 10px;
+}
+
+/* Botões de adicionar/remover quantidade */
+.quantidade button {
+  padding: 5px 10px;
+  font-size: 16px;
+  background-color: #ff6f00;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Coluna da direita: carrinho de compras */
+.carrinho {
+  width: 30%; /* Ocupa 30% da largura da tela */
+  background-color: #e1bee7; /* Cor de fundo lilás */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribui o conteúdo verticalmente */
+}
+
+/* Título do carrinho centralizado */
+.carrinho h2 {
+  text-align: center;
+}
+
+/* Rodapé do carrinho com o total e botão "Próximo" */
+.footer {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff8e1; /* Cor clara para destacar o total */
+  margin-top: auto; /* Empurra o rodapé para o final da coluna */
+}
+
+/* Texto do total em destaque */
+#total {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Botão "Próximo" estilizado */
+#btn-proximo {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  font-size: 18px;
+  padding: 12px 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s; /* Suaviza o efeito de hover */
+}
+
+/* Efeito ao passar o mouse no botão */
+#btn-proximo:hover {
+  background-color: #fb8c00;
+}
+
+/* Estilo para cada item dentro do carrinho */
+.item-carrinho {
+  display: flex;
+  justify-content: space-between; /* Nome do item e preço em lados opostos */
+  padding: 8px;
+  background-color: #f3e5f5;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  font-size: 16px;
+}

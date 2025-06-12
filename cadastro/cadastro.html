@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro - Burger King</title>
+    <link rel="stylesheet" href="cadastro.css">
+</head>
+<body>
+    <div class="cadastro-container">
+        <h1>Cadastro</h1>
+        <input type="text" id="nome" placeholder="Nome completo" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="senha" placeholder="Senha" required>
+        <input type="password" id="confirmar" placeholder="Confirmar senha" required>
+
+
+        <button onclick="cadastrar()">Cadastrar</button>
+        <p><a href="../login/login.html">Voltar ao login</a></p>
+    </div>
+    <script src="cadastro.js"></script>
+
+<script>
+// Funções JS: login, cadastro, cupom, pix, gerente (resumido para clareza)
+function cadastrarUsuario(email, senha) {
+  fetch("http://localhost:3000/usuarios", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, senha })
+  }).then(res => res.json()).then(data => alert(data.message));
+}
+function fazerLogin(email, senha) {
+  fetch("http://localhost:3000/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, senha })
+  }).then(res => res.json()).then(data => {
+    if (data.tipo === "gerente") window.location.href = "gerente.html";
+    else window.location.href = "menu.html";
+  });
+}
+function aplicarCupom(codigo, totalOriginal, callback) {
+  fetch("http://localhost:3000/cupons/validar", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ codigo, total: totalOriginal })
+  }).then(res => res.json()).then(data => {
+    if (data.total) {
+      alert(`Desconto aplicado: R$${data.desconto}. Total: R$${data.total}`);
+      callback(data.total);
+    } else {
+      alert(data.message);
+      callback(totalOriginal);
+    }
+  });
+}
+function gerarPix(valor) {
+  fetch("http://localhost:3000/pagamento/pix", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ valor })
+  }).then(res => res.json()).then(data => {
+    const img = document.createElement("img");
+    img.src = data.qrCode;
+    document.getElementById("pix-container").innerHTML = "";
+    document.getElementById("pix-container").appendChild(img);
+  });
+}
+function processarPagamentoComCupom(cupom, valorTotal) {
+  aplicarCupom(cupom, valorTotal, valorFinal => {
+    gerarPix(valorFinal);
+  });
+}
+</script>
+</body>
+</html>
+

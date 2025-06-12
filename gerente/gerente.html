@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gerente - CRUD Produtos</title>
+  <link rel="stylesheet" href="gerente.css" />
+</head>
+<body>
+  <h1>CRUD de Produtos (Gerente)</h1>
+
+  <!-- Adicionar Produto -->
+  <section class="form-container">
+    <h2>Adicionar Produto</h2>
+    <input type="text" id="nome" placeholder="Nome do Produto" />
+    <input type="text" id="categoria" placeholder="Categoria" />
+    <input type="number" id="preco" placeholder="Preço (R$)" step="0.01" />
+    <input type="file" id="foto" accept="image/*" />
+    <button id="adicionar-btn">Adicionar</button>
+  </section>
+
+  <!-- Tabela de Produtos -->
+  <section class="tabela-container">
+    <h2>Produtos Cadastrados</h2>
+    <table id="tabela-produtos">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Categoria</th>
+          <th>Preço</th>
+          <th>Foto</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <!-- Adicionar Cupom -->
+  <section class="form-container">
+    <h2>Adicionar Cupom</h2>
+    <input type="text" id="codigo-cupom" placeholder="Código do Cupom" />
+    <input type="number" id="percentual-cupom" placeholder="% Desconto" />
+    <button id="adicionar-cupom-btn">Adicionar Cupom</button>
+  </section>
+
+  <!-- Lista de Cupons -->
+  <section class="tabela-container">
+    <h2>Cupons Cadastrados</h2>
+    <table id="tabela-cupons">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Desconto (%)</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <!-- Gerenciar Usuários -->
+  <section class="form-container">
+    <h2>Gerenciar Usuários</h2>
+    <input type="text" id="email-usuario" placeholder="Email do Usuário" />
+    <button id="promover-btn">Promover a Gerente</button>
+    <button id="excluir-usuario-btn">Excluir Usuário</button>
+  </section>
+
+  <script src="gerente.js"></script>
+</body>
+</html>

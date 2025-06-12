@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fef1dc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    text-align: center;
+    width: 300px;
+    position: relative;
+}
+
+.login-container h1 {
+    margin-bottom: 20px;
+}
+
+.login-container input {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.login-container button {
+    margin: 10px 5px;
+    padding: 10px 20px;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.login-container button:hover {
+    background-color: #e6b800;
+}
+
+/* Estilo específico para o botão de voltar */
+.btn-voltar {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #ccc;
+    color: #333;
+    font-weight: normal;
+}
+
+.btn-voltar:hover {
+    background-color: #bbb;
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cupom</title>
+  <link rel="stylesheet" href="../cupom/cupom.css">
+</head>
+
+<body>
+
+  <!-- Área principal da página -->
+  <main class="cupom-container">
+
+    <!-- Cabeçalho com o título da página -->
+    <header>
+      <h1 class="titulo">CUPOM</h1>
+    </header>
+
+    <!-- Seção da área de busca de cupons -->
+    <section class="search-area">
+      <input type="text" id="inputCupom" placeholder="Digite seu cupom...">
+      <button onclick="verificarCupom()">🔍</button>
+    </section>
+
+    <!-- Seção para mensagens ao usuário -->
+    <section id="mensagem" class="mensagem"></section>
+
+    <!-- Rodapé com os botões de navegação -->
+    <footer class="botoes">
+      <button class="voltar" onclick="voltar()">Voltar</button>
+      <button class="pagar" onclick="pagar()">pagar</button>
+    </footer>
+
+  </main>
+
+  <script src="../cupom/cupom.js"></script>
+
+
+<script>
+// Funções JS: login, cadastro, cupom, pix, gerente (resumido para clareza)
+function cadastrarUsuario(email, senha) {
+  fetch('http://localhost:3000/usuarios', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, senha })
+  }).then(res => res.json()).then(data => alert(data.message));
+}
+function fazerLogin(email, senha) {
+  fetch('http://localhost:3000/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, senha })
+  }).then(res => res.json()).then(data => {
+    if (data.tipo === 'gerente') window.location.href = 'gerente.html';
+    else window.location.href = 'menu.html';
+  });
+}
+function aplicarCupom(codigo, totalOriginal, callback) {
+  fetch('http://localhost:3000/cupons/validar', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ codigo, total: totalOriginal })
+  }).then(res => res.json()).then(data => {
+    if (data.total) {
+      alert(`Desconto aplicado: R$${data.desconto}. Total: R$${data.total}`);
+      callback(data.total);
+    } else {
+      alert(data.message);
+      callback(totalOriginal);
+    }
+  });
+}
+function gerarPix(valor) {
+  fetch('http://localhost:3000/pagamento/pix', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ valor })
+  }).then(res => res.json()).then(data => {
+    const img = document.createElement('img');
+    img.src = data.qrCode;
+    document.getElementById('pix-container').innerHTML = '';
+    document.getElementById('pix-container').appendChild(img);
+  });
+}
+function processarPagamentoComCupom(cupom, valorTotal) {
+  aplicarCupom(cupom, valorTotal, valorFinal => {
+    gerarPix(valorFinal);
+  });
+}
+</script>
+</body>
+</html>
